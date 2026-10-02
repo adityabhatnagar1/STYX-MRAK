@@ -1,0 +1,24 @@
+# Copy to config.toml (or point CONFIG_FILE at another path). Optional: every
+# value shown here is the default. Secrets and Discord IDs live in .env.
+
+[feed]
+# A post is announced only if it contains an include keyword and no exclude keyword.
+include_keywords = ["rivals"]
+exclude_keywords = ["treasure quest", "super golf", "noodle arms", "black hole simulator", "halloween simulator"]
+source_label = "Nosniy Games"
+x_api_base = "https://api.x.com/2"
+# false: the first run records existing posts silently instead of announcing the backlog.
+announce_backlog = false
+
+[automod]
+# Turned on with AUTOMOD_ENABLED=true in .env.
+banned_words = []
+block_invites = true
+max_mentions = 5
+flood_messages = 6            # this many messages...
+flood_window_seconds = 8      # ...inside this window counts as a flood
+repeat_threshold = 3          # same message this many times...
+repeat_window_seconds = 30    # ...inside this window
+strikes_before_timeout = 3    # a violation deletes the message; repeated ones escalate
+strike_window_seconds = 600
+timeout_minutes = 10

@@ -1,0 +1,24 @@
+# systemd unit. Install: sudo cp deploy/styx-mrak.service /etc/systemd/system/
+# Adjust User, WorkingDirectory and the ExecStart path, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now styx-mrak
+[Unit]
+Description=ϟ МРАК STYX Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=styx
+WorkingDirectory=/opt/styx-mrak
+EnvironmentFile=/opt/styx-mrak/.env
+ExecStart=/opt/styx-mrak/target/release/styx-mrak
+Restart=on-failure
+RestartSec=5
+# SIGTERM triggers the bot's graceful shutdown.
+KillSignal=SIGTERM
+TimeoutStopSec=30
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/opt/styx-mrak/data /opt/styx-mrak/backups
+
+[Install]
+WantedBy=multi-user.target

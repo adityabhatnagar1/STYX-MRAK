@@ -1,0 +1,7 @@
+.env
+*.db
+*.sqlite
+*.db-shm
+*.db-wal
+target/
+backups/
